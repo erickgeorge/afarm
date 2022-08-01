@@ -8,8 +8,11 @@ use App\Models\crops_farmerscrop;
 use App\Models\crops_crop;
 use App\Models\User;
 use App\Models\subscriptions_subscription;
+use App\Models\subscriptions_subscription_crops_regions_weights;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+
 
 
 class HomeController extends Controller
@@ -64,6 +67,11 @@ class HomeController extends Controller
         $update->name = $request['name'];
         $update->lname = $request['lname'];
         $update->fname = $request['fname'];
+         if($request['email'] !=  $update->email) {
+             $request->validate([
+                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+             ]);
+         }
         $update->email = $request['email'];
         $update->phone = $request['phone'];
         $update->save();
@@ -71,29 +79,59 @@ class HomeController extends Controller
         return back()->with(['message'=>'User Updated Successifully']);
     }
 
+    public function newuser(Request $request)
+    {
+        $request->validate([
+
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+
+        ]);
+
+        $update = new user();
+        $update->name = $request['name'];
+        $update->lname = $request['lname'];
+        $update->fname = $request['fname'];
+        $update->email = $request['email'];
+        $update->phone = $request['phone'];
+        $update->role = $request['role'];
+        $update->password = Hash::make($request['name']);
+        $update->save();
+
+        return redirect()->route('users')->with(['message'=>'New User Added']);
+    }
+
+
+    public function deleteuser($id)
+    {
+        $del = user::where('id',$id)->first();
+        $del->delete();
+
+        return back()->with(['message'=>'User Deleted']);
+    }
+
 
        public function changepassword(Request $request, $id)
     {
         $update = user::where('id',$id)->first();
-        
+
 
         $oldpass = Hash::make($request['oldpass']);
 
         if (Hash::check($request['oldpass'], $update->password)){
-        
+
         if($request['newpass'] != $request['confirmpass']){
-            return back()->withErrors(['message'=>'New Password and Confirm Password do not match.']);
+            return redirect()->route('pass_myprofile',[$id])->withErrors(['message'=>'New Password and Confirm Password do not match.']);
            }
-      
-      
+
+
         $update->password = Hash::make($request['newpass']);
         $update->save();
 
-        return back()->with(['message'=>'Password Changed Successifully']);
+        return redirect()->route('pass_myprofile',[$id])->with(['message'=>'Password Changed Successifully']);
           }
           else{
-                return back()->withErrors(['message'=>'Wrong Old Password']);
-         
+                return redirect()->route('pass_myprofile',[$id])->withErrors(['message'=>'Wrong Old Password']);
+
           }
 
     }
@@ -104,6 +142,12 @@ class HomeController extends Controller
         return view('mkulima', ['mkulima'=> $mkulima]);
     }
 
+    public function users()
+    {
+        $users = User::all();
+        return view('users', ['user'=> $users]);
+    }
+
     public function mazao($id)
     {
         $mazaoid = crops_crop::where('id', $id)->first();
@@ -111,11 +155,22 @@ class HomeController extends Controller
         return view('mazao', ['mazao'=> $mazao , 'mazaoid'=> $mazaoid]);
     }
 
-
     public function taarifa()
     {
-        $taarifa = subscriptions_subscription::all();
+        $taarifa = subscriptions_subscription::where('package_id',1)->get();
         return view('taarifa', ['taarifa'=> $taarifa]);
+    }
+
+     public function manunuzi()
+    {
+        $taarifa = subscriptions_subscription::where('package_id',2)->get();
+        return view('manunuzi', ['taarifa'=> $taarifa]);
+    }
+
+
+    public function add_user()
+    {
+        return view('add_user');
     }
 
         public function myprofile($id)
@@ -123,5 +178,44 @@ class HomeController extends Controller
         $myprofile = User::where('id',$id)->first();
         return view('myprofile', ['myprofile'=> $myprofile]);
     }
+
+     public function passmyprofile($id)
+    {
+        $myprofile = User::where('id',$id)->first();
+        return view('passmyprofile', ['myprofile'=> $myprofile]);
+    }
+
+    public function viewuser($id)
+    {
+        $myprofile = User::where('id',$id)->first();
+        return view('viewuser', ['myprofile'=> $myprofile]);
+    }
+
+        public function viewtaarifa($id)
+    {
+         $taarifa = subscriptions_subscription_crops_regions_weights::where('subscription_id',$id)->get();
+          $buyer = subscriptions_subscription::where('id',$id)->first();
+
+        return view('view_taarifa', ['taarifa'=> $taarifa, 'buyer'=>$buyer]);
+    }
+
+        public function viewmanunuzi($id)
+    {
+         $taarifa = subscriptions_subscription_crops_regions_weights::where('subscription_id',$id)->get();
+         $buyer = subscriptions_subscription::where('id',$id)->first();
+
+        return view('view_manunuzi', ['taarifa'=> $taarifa, 'buyer'=>$buyer]);
+    }
+
+ 
+        public function viewmanunuzimkulima($id)
+    {
+         $taarifa = subscriptions_subscription_crops_regions_weights::where('subscription_id',$id)->get();
+
+
+        return view('view_manunuzi_mkulima', ['taarifa'=> $taarifa]);
+    }
+
+
 
 }

@@ -1,14 +1,9 @@
-Add Updated at on Users_user Table
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AFARM  | Home</title>
+    <title>AFARM | Home</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -47,7 +42,7 @@ Add Updated at on Users_user Table
 <body class="hold-transition sidebar-mini layout-fixed">
 
     <?php use App\Models\crops_cropcategory;
-          use App\Models\crops_crop; 
+          use App\Models\crops_crop;
          $crops_ = crops_cropcategory::get(); ?>
 
 <div class="wrapper">
@@ -61,7 +56,7 @@ Add Updated at on Users_user Table
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
               </li>
               <li class="nav-item d-none d-sm-inline-block">
-                <a href="index3.html" class="nav-link">Home</a>
+                <a href="{{route('users')}}" class="nav-link">Users</a>
               </li>
               <li class="nav-item d-none d-sm-inline-block">
                 <a href="#" class="nav-link">Contact</a>
@@ -127,13 +122,11 @@ Add Updated at on Users_user Table
                          with font-awesome or any other icon font library -->
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link active">
+                        <a href="/home" class="nav-link active">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-
-
 
 
                     <li class="nav-item">
@@ -212,7 +205,7 @@ Add Updated at on Users_user Table
                                             </li>
                                           @endforeach
 
-                                           
+
                                         </ul>
                                     </li>
                                     @endforeach
@@ -223,7 +216,6 @@ Add Updated at on Users_user Table
 
                         </ul>
                     </li>
-
 
 
                     <li class="nav-item">

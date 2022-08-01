@@ -26,7 +26,20 @@
 
     <div class="card-body login-card-body">
       <p class="login-box-msg">Log In</p>
-
+           @if (session('message'))
+                  <div class="alert alert-success" role="alert">
+                      {{ session('message') }}
+                  </div>
+              @endif
+              @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+               </div>
+              @endif
 
       <form method="POST" action="{{ route('login') }}">
         @csrf
@@ -84,7 +97,7 @@
 
 
       <p class="mb-1">
-        <a href="forgot-password.html">Forgot Password?</a>
+        <a href="/forget_password">Forgot Password?</a>
       </p>
       <p class="mb-0">
 {{--        <a href="register.html" class="text-center">Login</a>--}}

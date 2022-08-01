@@ -2,17 +2,19 @@
 
 @section('content')
 
+@if(auth()->user()->role == 'SuperAdmin')
+
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Mkulima</h1>
+            <h1>Users</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/home">Home</a></li>
-              <li class="breadcrumb-item active">Mkulima</li>
+              <li class="breadcrumb-item active">Users</li>
             </ol>
           </div>
         </div>
@@ -34,6 +36,9 @@
 
             <div class="card">
               <div class="card-header">
+
+                      <a href="{{route('add_user')}}"> <button type="submit" class="btn btn-primary btn-block"> Add User</button></a>
+
                 <!-- <h3 class="card-title">DataTable with default features</h3> -->
               </div>
               <!-- /.card-header -->
@@ -42,27 +47,37 @@
                   <thead>
                   <tr>
                     <th>No.</th>
-                    <th>Jina la mkulima </th>
-                    <th>Namba ya simu</th>
-                    <th>Zao</th>
-                    <th>Kipimo</th>
-                    <th>Kiasi</th>
-                    <th>Bei (Tshs)</th>
+                    <th>Name</th>
+                    <th>UserName</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
                     <?php $i=0; ?>
-                  @foreach($mkulima as $farmer)
+                  @foreach($user as $user)
                     <?php $i++; ?>
 
                   <tr>
-                   <td>{{$i}}</td>
-                    <td>{{$farmer['farmer']->first_name}} &nbsp; {{$farmer['farmer']->last_name}}</td>
-                    <td>{{$farmer['farmer']->phone_number}}</td>
-                    <td>{{$farmer['crop']->crop_name}}</td>
-                    <td>{{$farmer['cropunit']->unit_name}}</td>
-                    <td>{{number_format($farmer->unit_count)}}</td>    
-                    <td>{{number_format($farmer->total_price)}}</td>
+                      <td>{{$i}}</td>
+                      <td>{{$user->fname}} {{$user->lname}}</td>
+                      <td>{{$user->name}}</td>
+                      <td>{{$user->phone}}</td>
+                      <td>{{$user->email}}</td>
+                      <td>{{$user->role}}</td>
+                      <td class="row">
+                          <button title="View"  style="color: darkgreen;"><a href="{{route('view_user',[$user->id])}}" ><i class="fas fa-eye"></i></a></button>&nbsp;
+                         @if($user->role != 'SuperAdmin')
+                          <form method="POST" action="{{route('deleteuser',[$user->id])}}"
+                                onsubmit="return confirm('Are you sure you want to Delete ?')">
+                              @csrf
+                              <button  type="submit"
+                                       title="Delete" data-toggle="tooltip" style="color: red;">  <i  class="fas fa-trash-alt"></i></button>
+                          </form>
+                          @endif
+                      </td>
                   </tr>
 
                   @endforeach
@@ -87,4 +102,5 @@
   </div>
   <!-- /.content-wrapper -->
 
+@endif
 @endsection

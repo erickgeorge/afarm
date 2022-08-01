@@ -66,8 +66,8 @@
                 <ul class="nav nav-pills">
                <!--    <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a></li>
                   <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li> -->
-                  <li class="nav-item"><a class="nav-link active" href="#settings" data-toggle="tab">User Details</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Change Password</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">User Details</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="#timeline" data-toggle="tab">Change Password</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
@@ -75,7 +75,7 @@
               
       
 
-                  <div class="active tab-pane" class="tab-pane" id="settings">
+                  <div class="tab-pane" class="tab-pane" id="settings">
                     <form method="POST" action="{{route('update_user',[$myprofile->id])}}">
                       @csrf
                       <div class="form-group row">
@@ -126,7 +126,7 @@
 
 
 
-                  <div class="tab-pane" class="tab-pane" id="timeline">
+                  <div class="active tab-pane" class="tab-pane" id="timeline">
                     <form method="POST" action="{{route('changepass',[$myprofile->id])}}">
                       @csrf
                       <div class="form-group row">

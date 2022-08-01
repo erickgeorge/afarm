@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-
-<?php use App\Models\crops_farmerscropsunitprice; ?>
+<?php use Carbon\Carbon; 
+$now = Carbon::now();?>
 
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Mkulima</h1>
+            <h1>Manunuzi</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/home">Home</a></li>
-              <li class="breadcrumb-item active">Mkulima</li>
+              <li class="breadcrumb-item active">Manunuzi</li>
             </ol>
           </div>
         </div>
@@ -45,33 +45,26 @@
                   <tr>
                     <th>No.</th>
                     <th>Jina la mkulima </th>
-                    <th>Namba ya simu</th>
-                    <th>Zao</th>
-                    <th>Kipimo</th>
-                    <th>Kiasi</th>
-                    <th>Bei kwa Kipimo (Tzs)</th>
-                    <th>Bei Ya Jumla (Tzs)</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>View</th>
                   </tr>
                   </thead>
                   <tbody>
                     <?php $i=0; ?>
-                  @foreach($mkulima as $farmer)
+                 @foreach($taarifa as $taarifa)
                     <?php $i++; ?>
 
                   <tr>
                    <td>{{$i}}</td>
-                    <td>{{$farmer['farmer']->first_name}} &nbsp; {{$farmer['farmer']->last_name}}</td>
-                    <td>{{$farmer['farmer']->phone_number}}</td>
-                    <td>{{$farmer['crop']->crop_name}}</td>
-                    <td>{{$farmer['cropunit']->unit_name}}</td>
-                    <td>{{number_format($farmer->unit_count)}}</td>
-                    <?php $unit = crops_farmerscropsunitprice::where('farmers_crop_id',$farmer->id)->get(); ?>
-                      
-                    <td>@foreach($unit as $farmers)
-                      {{number_format($farmers->unit_price)}} kwa {{$farmers['cropunit']->unit_name}}. &nbsp;
-                       @endforeach</td>
-                      
-                    <td>{{number_format($farmer->total_price)}}</td>
+                   <td>{{$taarifa['buyers']->first_name}} {{$taarifa['buyers']->last_name}}</td>
+                   <td>{{ date('d F Y', strtotime($taarifa->subscription_start_date)) }}</td>
+                   <td>{{ date('d F Y', strtotime($taarifa->subscription_end_date)) }}</td>
+                   <td>{{number_format($taarifa['pachages']->price)}}</td>
+                   <td>@if($now > $taarifa->subscription_end_date) Expired @else Active @endif</td>
+                   <td><a title="Angalia Zaidi" href="{{route('view_manunuzi',[$taarifa->id])}}"><i class="fas fa-eye"></i></a></td>
                   </tr>
 
                   @endforeach
