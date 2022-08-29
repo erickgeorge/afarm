@@ -51,6 +51,7 @@
                     <th>Kiasi</th>
                     <th>Bei kwa Kipimo (Tzs)</th>
                     <th>Bei Ya Jumla (Tzs)</th>
+                    <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -72,6 +73,9 @@
                        @endforeach</td>
                       
                     <td>{{number_format($farmer->total_price)}}</td>
+
+                     <td><a title="Angalia Zaidi" href="{{url('view__mkulima',[$farmer->id])}}"><i class="fas fa-edit"></i></a></td>
+
                   </tr>
 
                   @endforeach

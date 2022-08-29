@@ -10,7 +10,7 @@
                                 {{ __('A fresh verification link has been sent to your email address.') }}
                             </div>
                         @endif
-                        <a href="http://localhost:8000/reset_password{{$token}}">Please Click This Link To Change Your Password</a>.
+                        <a href="https://afarm.africa:818/reset_password{{$token}}">Please Click This Link To Change Your Password</a>.
                     </div>
                 </div>
             </div>

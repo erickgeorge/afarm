@@ -55,7 +55,6 @@
                      <?php $i=0; ?>
                   @foreach($user_farm as $user)
                    <?php $i++; ?>
-                  @if($user['users']->is_active == 0)
                   <tr>
                    <td>{{$i}}</td>
                     <td>{{$user->first_name}}&nbsp;&nbsp;{{$user->last_name}}</td>
@@ -74,15 +73,16 @@
                       </form>
 
                       &nbsp;
-                      <form method="POST"
+                      <form method="POST" action="{{route('deleteusajiri',[$user->user_id])}}"
                       onsubmit="return confirm('Are you sure you want to Delete ?')">
+                       @csrf
                       <button  type="submit"
                         title="Delete" data-toggle="tooltip" style="color: red;">  <i  class="fas fa-trash-alt"></i></button>
                       </form>
                      </td>
 
                   </tr>
-                  @endif
+
                   @endforeach
 
                   </tbody>

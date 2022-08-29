@@ -44,7 +44,7 @@
                     <th>No.</th>
                     <th>Mkoa </th>
                     <th>Wilaya</th>
-                    <th>Mkulima</th>
+                    <th>Kipimo</th>
                     <th>Kiasi</th>
                   
                   </tr>
@@ -58,7 +58,10 @@
                    <td>{{$i}}</td>
                    <td>{{$farmer['farmer']['location']['location_district']['location_region']->region_name}}</td>
                    <td>{{$farmer['farmer']['location']['location_district']->district_name}}</td>
-                   <td>{{$farmer['farmer']->first_name}} &nbsp; {{$farmer['farmer']->last_name}}</td>
+
+
+                   <td>{{$farmer['cropunit']->unit_name}}</td>
+
                    <td>{{number_format($farmer->unit_count)}}</td>   
                   </tr>
 

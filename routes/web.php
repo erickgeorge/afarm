@@ -36,6 +36,9 @@ Route::post('/update_user/{id}', [App\Http\Controllers\HomeController::class, 'u
 Route::post('/change_pass/{id}', [App\Http\Controllers\HomeController::class, 'changepassword'])->name('changepass');
 Route::get('/users', [App\Http\Controllers\HomeController::class, 'users'])->name('users');
 Route::get('/view_user{id}', [App\Http\Controllers\HomeController::class, 'viewuser'])->name('view_user');
+
+Route::get('/view__mkulima/{id}', [App\Http\Controllers\HomeController::class, 'viewusermkulima'])->name('view_user_mkulima');
+
 Route::get('/add_user', [App\Http\Controllers\HomeController::class, 'add_user'])->name('add_user');
 Route::post('/new_user', [App\Http\Controllers\HomeController::class, 'newuser'])->name('newuser');
 Route::post('/delete_user/{id}', [App\Http\Controllers\HomeController::class, 'deleteuser'])->name('deleteuser');
@@ -46,3 +49,7 @@ Route::get('/pass_myprofile{id}', [App\Http\Controllers\HomeController::class, '
 Route::get('/view_taarifa{id}', [App\Http\Controllers\HomeController::class, 'viewtaarifa'])->name('view_taarifa');
 Route::get('/view_manunuzi{id}', [App\Http\Controllers\HomeController::class, 'viewmanunuzi'])->name('view_manunuzi');
 Route::get('/view_mkulima{id}', [App\Http\Controllers\HomeController::class, 'viewmanunuzimkulima'])->name('view_manunuzi_mkulima');
+Route::get('/view_next_mkulima{id}', [App\Http\Controllers\HomeController::class, 'viewmanunuzimkulimanext'])->name('view_manunuzi_next');
+Route::post('/delete_usajiri/{id}', [App\Http\Controllers\HomeController::class, 'deleteuserusajiri'])->name('deleteusajiri');
+
+Route::post('/edit_mkulimaok/{id}', [App\Http\Controllers\HomeController::class, 'editmkulimaok'])->name('edit_mkulima');

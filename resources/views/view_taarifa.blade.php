@@ -47,7 +47,7 @@
                      <th>Mazao</th>
                     <th>Mkoa</th>
                     <th>Kipimo</th>
-                    <th>Bei Kwa Kipimo</th>
+                    <!-- <th>Bei Kwa Kipimo</th> -->
                     <th>Mikoa zaidi</th>
                   </tr>
                   </thead>
@@ -62,7 +62,7 @@
                    <td>{{$taarifa['weight']['crop']->crop_name}}</td>
                    <td>{{$taarifa['weight']['location_region']->region_name}}</td>
                    <td>{{$taarifa['weight']['crop']['measurementcategory']->category_name}}</td>
-                   <td>Bei</td>
+                   <!-- <td>Bei</td> -->
                    <td>    
                          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
                                <i style="color:green;" class="fas fa-eye" title="Mikoa Zaidi"></i>

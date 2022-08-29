@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Manunuzi ya {{$buyer['buyers']->first_name}} {{$buyer['buyers']->last_name}}</h1>
+            <h1>{{$buyer['buyers']->first_name}} {{$buyer['buyers']->last_name}}</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -47,7 +47,7 @@
                      <th>Mazao</th>
                     <th>Mkoa</th>
                     <th>Kipimo</th>
-                    <th>Bei Kwa Kipimo</th>
+                    <!-- <th>Bei Kwa Kipimo</th> -->
                     <th>Taarifa Zaidi</th>
                   </tr>
                   </thead>
@@ -62,7 +62,7 @@
                    <td>{{$taarifa['weight']['crop']->crop_name}}</td>
                    <td>{{$taarifa['weight']['location_region']->region_name}}</td>
                    <td>{{$taarifa['weight']['crop']['measurementcategory']->category_name}}</td>
-                   <td>Bei</td>
+                   <!-- <td>Bei</td> -->
                    <td><a title="Taarifa za Mkulima" href="{{route('view_manunuzi_mkulima',[$taarifa->id])}}"><i class="fas fa-eye"></i></a></td>
                   </tr>
 

@@ -99,8 +99,8 @@ $crops_ = crops_cropcategory::get(); ?>
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="index.html" class="brand-link">
-            <img src="dist/img/AdminLTELogo.png" alt="AFARM Logo" class="brand-image img-circle elevation-3" style="opacity: .8; background-color: whitesmoke;">
+        <a href="/home" class="brand-link">
+            <img src="../dist/img/AdminLTELogo.png" alt="AFARM Logo" class="brand-image img-circle elevation-3" style="opacity: .8; background-color: whitesmoke;">
             <span class="brand-text font-weight-light">AFARM</span>
         </a>
 
@@ -255,7 +255,7 @@ $crops_ = crops_cropcategory::get(); ?>
                                 <a href="#" class="nav-link">
                                     &nbsp;&nbsp;  &nbsp; &nbsp;  <i class="ion ion-ios-people"></i>
                                     <p>
-                                        Payment
+                                        Malipo
                                         <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
